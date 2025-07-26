@@ -1,0 +1,263 @@
+{
+  "farmer_details": {
+    "personal_info": {
+      "name": "राज कुमार शर्मा",
+      "name_english": "Raj Kumar Sharma",
+      "age": 45,
+      "gender": "Male",
+      "education_level": "10th Standard",
+      "primary_language": "Hindi",
+      "secondary_languages": ["English", "Punjabi"],
+      "mobile_number": "+91-9876543210",
+      "preferred_communication": "Voice calls",
+      "literacy_level": "Basic reading/writing"
+    },
+    "location_details": {
+      "village": "Rampur Khas",
+      "block": "Rampur",
+      "district": "Muzaffarnagar", 
+      "state": "Uttar Pradesh",
+      "pin_code": "251001",
+      "coordinates": {
+        "latitude": 29.4727,
+        "longitude": 77.7085
+      },
+      "agro_climatic_zone": "Western Plain Zone",
+      "rainfall_zone": "Semi-arid",
+      "elevation_meters": 237,
+      "nearest_weather_station": "Muzaffarnagar",
+      "nearest_market": "Muzaffarnagar Mandi",
+      "distance_to_market_km": 8
+    },
+    "farm_details": {
+      "total_land_area_acres": 5.2,
+      "owned_land_acres": 3.5,
+      "leased_land_acres": 1.7,
+      "irrigated_area_acres": 4.0,
+      "rainfed_area_acres": 1.2,
+      "soil_types": [
+        {
+          "type": "Sandy Loam",
+          "area_acres": 3.0,
+          "ph_level": 7.2,
+          "organic_carbon_percent": 0.45,
+          "nitrogen_status": "Medium",
+          "phosphorus_status": "Low",
+          "potassium_status": "High"
+        },
+        {
+          "type": "Clay Loam", 
+          "area_acres": 2.2,
+          "ph_level": 7.8,
+          "organic_carbon_percent": 0.38,
+          "nitrogen_status": "Low",
+          "phosphorus_status": "Medium",
+          "potassium_status": "Medium"
+        }
+      ],
+      "water_sources": [
+        {
+          "type": "Tube well",
+          "depth_feet": 180,
+          "water_quality": "Good",
+          "capacity_hours_per_day": 8,
+          "electricity_availability": "Regular"
+        },
+        {
+          "type": "Canal",
+          "source": "Upper Ganga Canal",
+          "reliability": "Seasonal",
+          "water_quality": "Fair"
+        }
+      ],
+      "drainage_status": "Good",
+      "farm_mechanization_level": "Medium",
+      "storage_facilities": {
+        "grain_storage_quintals": 50,
+        "cold_storage_access": false,
+        "processing_facilities": false
+      }
+    },
+    "cropping_pattern": {
+      "current_season": "Kharif 2024",
+      "kharif_crops": [
+        {
+          "crop_name": "Sugarcane",
+          "variety": "CoS 98231",
+          "area_acres": 2.5,
+          "sowing_date": "2024-03-15",
+          "expected_harvest": "2025-01-15",
+          "growth_stage": "Tillering",
+          "irrigation_method": "Furrow",
+          "seed_source": "Government certified",
+          "previous_yield_tons_per_acre": 45
+        },
+        {
+          "crop_name": "Rice",
+          "variety": "Pusa 44",
+          "area_acres": 1.5,
+          "sowing_date": "2024-06-20",
+          "expected_harvest": "2024-11-15",
+          "growth_stage": "Vegetative",
+          "irrigation_method": "Flood",
+          "seed_source": "Own saved seed",
+          "previous_yield_tons_per_acre": 4.2
+        }
+      ],
+      "rabi_crops_planned": [
+        {
+          "crop_name": "Wheat",
+          "variety": "HD 2967",
+          "planned_area_acres": 2.0,
+          "planned_sowing_date": "2024-11-20",
+          "seed_requirement_kg": 100,
+          "seed_source_planned": "Government certified"
+        },
+        {
+          "crop_name": "Mustard",
+          "variety": "Pusa Bold",
+          "planned_area_acres": 1.0,
+          "planned_sowing_date": "2024-10-25",
+          "seed_requirement_kg": 4,
+          "seed_source_planned": "Local dealer"
+        }
+      ],
+      "crop_rotation_pattern": "Rice-Wheat-Sugarcane",
+      "fallow_period_months": 0,
+      "intercropping_practiced": true,
+      "intercropping_details": "Sugarcane + Potato (winter)"
+    },
+    "input_usage": {
+      "fertilizers": {
+        "urea_kg_per_acre": 80,
+        "dap_kg_per_acre": 50,
+        "mop_kg_per_acre": 25,
+        "organic_manure_tons_per_acre": 2.5,
+        "micronutrients_used": ["Zinc", "Boron"],
+        "soil_testing_frequency": "Every 2 years",
+        "last_soil_test_date": "2023-05-15"
+      },
+      "pesticides": {
+        "herbicides_used": ["2,4-D", "Isoproturon"],
+        "insecticides_used": ["Chlorpyrifos", "Imidacloprid"],
+        "fungicides_used": ["Propiconazole", "Carbendazim"],
+        "biopesticides_used": ["Trichoderma", "NPV"],
+        "spray_equipment": "Knapsack sprayer",
+        "resistance_management": "Crop rotation practiced"
+      },
+      "seeds": {
+        "certified_seed_usage_percent": 70,
+        "hybrid_seed_usage_percent": 20,
+        "own_saved_seed_percent": 10,
+        "seed_treatment_practiced": true,
+        "seed_storage_method": "Earthen pots with neem leaves"
+      }
+    },
+    "livestock_details": {
+      "cattle": {
+        "dairy_cows": 2,
+        "breed": "Crossbred (Holstein + Local)",
+        "milk_production_liters_per_day": 18,
+        "feed_source": "Own fodder + purchased concentrate"
+      },
+      "buffalo": {
+        "count": 1,
+        "breed": "Murrah",
+        "milk_production_liters_per_day": 8
+      },
+      "poultry": {
+        "count": 25,
+        "type": "Backyard chickens",
+        "egg_production_per_day": 15
+      },
+      "other_animals": ["2 bullocks", "5 goats"],
+      "feed_cultivation": {
+        "fodder_crops": ["Berseem", "Oats", "Maize"],
+        "fodder_area_acres": 0.5
+      }
+    },
+    "economic_profile": {
+      "annual_income_ranges": {
+        "agriculture_income_inr": "200000-300000",
+        "livestock_income_inr": "80000-120000",
+        "other_income_inr": "50000-80000"
+      },
+      "investment_capacity": {
+        "annual_input_budget_inr": 150000,
+        "credit_access": "Kisan Credit Card",
+        "insurance_coverage": ["PM Fasal Bima", "Livestock insurance"],
+        "bank_account": "Yes - Jan Dhan Account",
+        "digital_payment_usage": "Basic - UPI"
+      },
+      "market_linkages": {
+        "primary_buyer": "Local trader",
+        "direct_market_access": false,
+        "fpo_membership": "Rampur Kisan Producer Company",
+        "contract_farming": false,
+        "price_information_source": "Mobile SMS alerts"
+      }
+    },
+    "technology_adoption": {
+      "smartphone_usage": true,
+      "internet_access": "Mobile data - 2G/3G",
+      "agricultural_apps_used": ["mKisan", "Kisan Suvidha"],
+      "social_media_usage": "WhatsApp for farming groups",
+      "extension_contact": {
+        "kvk_officer_contact": "+91-1234567890",
+        "agricultural_officer": "Rajesh Kumar Singh",
+        "last_extension_visit": "2024-06-10"
+      },
+      "training_attended": [
+        {
+          "topic": "Integrated Pest Management",
+          "date": "2024-03-20",
+          "conducted_by": "KVK Muzaffarnagar"
+        },
+        {
+          "topic": "Drip irrigation",
+          "date": "2023-11-15", 
+          "conducted_by": "ATMA"
+        }
+      ]
+    },
+    "challenges_faced": [
+      "Irregular electricity supply affecting irrigation",
+      "Labor shortage during peak seasons",
+      "Stray animal damage to crops",
+      "Lack of cold storage facilities",
+      "Price fluctuation of sugarcane",
+      "Increasing input costs",
+      "Water scarcity in summer months"
+    ],
+    "government_schemes_enrolled": [
+      "PM-KISAN",
+      "Pradhan Mantri Fasal Bima Yojana",
+      "Kisan Credit Card",
+      "Soil Health Card Scheme",
+      "Pradhan Mantri Krishi Sinchayee Yojana"
+    ],
+    "preferences": {
+      "advisory_timing": "Early morning (6-8 AM) or evening (6-8 PM)",
+      "information_format": "Voice messages in Hindi",
+      "measurement_units": "Traditional (bigha, maund) with metric conversion",
+      "currency_preference": "Indian Rupees",
+      "calendar_system": "Hindi months with English dates"
+    },
+    "emergency_contacts": {
+      "veterinary_doctor": "+91-9876543211",
+      "agricultural_input_dealer": "+91-9876543212",
+      "local_mechanic": "+91-9876543213",
+      "nearest_hospital": "+91-1312-234567"
+    }
+  },
+  "context_usage_instructions": {
+    "for_weather_advice": "Use location_details.coordinates and nearest_weather_station for accurate weather data",
+    "for_crop_management": "Consider current cropping_pattern, growth_stage, and soil_types for recommendations",
+    "for_pest_disease": "Factor in current crops, varieties, growth_stage, and regional pest calendar",
+    "for_input_recommendations": "Consider soil test results, current usage patterns, and economic constraints",
+    "for_market_advice": "Use market_linkages and economic_profile for pricing and selling guidance",
+    "for_language": "Respond primarily in primary_language (Hindi) with English scientific terms",
+    "for_measurements": "Provide traditional units first, then metric equivalents",
+    "for_cultural_context": "Use appropriate honorifics and rural farming terminology"
+  }
+} 

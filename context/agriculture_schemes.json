@@ -1,0 +1,192 @@
+[
+  {
+    "name": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+    "slug": "pm-kisan",
+    "category": "Agriculture",
+    "description": "Direct income support of Rs. 6,000 per year to eligible farmer families",
+    "eligibility_criteria": [
+      "Small and marginal farmers",
+      "Landholding up to 2 hectares",
+      "Should not be income tax payers",
+      "Should not be government employees",
+      "Should not be professionals like doctors, engineers, lawyers, etc."
+    ],
+    "benefits": [
+      "Rs. 6,000 per year in three equal installments",
+      "Direct transfer to bank account",
+      "No repayment required"
+    ],
+    "documents_required": [
+      "Aadhaar card",
+      "Land records",
+      "Bank account details",
+      "Income certificate"
+    ],
+    "how_to_apply": [
+      "Visit PM-KISAN portal",
+      "Register with Aadhaar",
+      "Upload required documents",
+      "Submit application"
+    ],
+    "financial_assistance": "Rs. 6,000 per year",
+    "target_audience": ["small_farmers", "marginal_farmers"],
+    "application_deadline": "Ongoing",
+    "contact_info": {
+      "website": "https://pmkisan.gov.in",
+      "helpline": "1800-180-1551"
+    },
+    "url": "/schemes/pm-kisan"
+  },
+  {
+    "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "slug": "pmfby",
+    "category": "Agriculture Insurance",
+    "description": "Comprehensive crop insurance scheme to protect farmers against natural calamities",
+    "eligibility_criteria": [
+      "All farmers growing notified crops",
+      "Loanee farmers (compulsory)",
+      "Non-loanee farmers (voluntary)",
+      "Sharecroppers and tenant farmers"
+    ],
+    "benefits": [
+      "Coverage against natural calamities",
+      "Low premium rates",
+      "Quick claim settlement",
+      "Coverage for post-harvest losses"
+    ],
+    "documents_required": [
+      "Land records",
+      "Crop details",
+      "Bank account details",
+      "Aadhaar card"
+    ],
+    "how_to_apply": [
+      "Contact nearest bank or insurance company",
+      "Fill application form",
+      "Pay premium",
+      "Get insurance certificate"
+    ],
+    "financial_assistance": "Up to 100% crop value",
+    "target_audience": ["all_farmers", "loanee_farmers"],
+    "application_deadline": "Before sowing",
+    "contact_info": {
+      "website": "https://pmfby.gov.in",
+      "helpline": "1800-180-1551"
+    },
+    "url": "/schemes/pmfby"
+  },
+  {
+    "name": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
+    "slug": "pmksy",
+    "category": "Irrigation",
+    "description": "Comprehensive irrigation scheme to ensure water security for farmers",
+    "eligibility_criteria": [
+      "Farmers with landholding",
+      "Priority to small and marginal farmers",
+      "Areas with water scarcity",
+      "Rainfed areas"
+    ],
+    "benefits": [
+      "Micro-irrigation systems",
+      "Water harvesting structures",
+      "Drip and sprinkler irrigation",
+      "Increased crop productivity"
+    ],
+    "documents_required": [
+      "Land ownership documents",
+      "Soil test reports",
+      "Water availability certificate",
+      "Bank account details"
+    ],
+    "how_to_apply": [
+      "Contact agriculture department",
+      "Submit application with documents",
+      "Site inspection",
+      "Approval and implementation"
+    ],
+    "financial_assistance": "Up to 90% subsidy",
+    "target_audience": ["all_farmers", "water_scarce_areas"],
+    "application_deadline": "Year-round",
+    "contact_info": {
+      "website": "https://pmksy.gov.in",
+      "helpline": "1800-180-1551"
+    },
+    "url": "/schemes/pmksy"
+  },
+  {
+    "name": "Kisan Credit Card (KCC)",
+    "slug": "kcc",
+    "category": "Credit",
+    "description": "Easy credit facility for farmers to meet agricultural and allied needs",
+    "eligibility_criteria": [
+      "Individual farmers",
+      "Joint borrowers",
+      "Tenant farmers",
+      "Sharecroppers",
+      "Self-help groups"
+    ],
+    "benefits": [
+      "Easy credit access",
+      "Low interest rates",
+      "Flexible repayment",
+      "Coverage for multiple crops"
+    ],
+    "documents_required": [
+      "Aadhaar card",
+      "Land records",
+      "Bank account",
+      "Passport size photos",
+      "Income certificate"
+    ],
+    "how_to_apply": [
+      "Visit nearest bank branch",
+      "Fill KCC application form",
+      "Submit required documents",
+      "Get KCC card after approval"
+    ],
+    "financial_assistance": "Up to Rs. 3 lakhs",
+    "target_audience": ["all_farmers", "tenant_farmers"],
+    "application_deadline": "Year-round",
+    "contact_info": {
+      "website": "https://www.nabard.org",
+      "helpline": "1800-180-1551"
+    },
+    "url": "/schemes/kcc"
+  },
+  {
+    "name": "Soil Health Card Scheme",
+    "slug": "soil-health-card",
+    "category": "Soil Management",
+    "description": "Free soil testing and recommendations for farmers",
+    "eligibility_criteria": [
+      "All farmers",
+      "Landowners",
+      "Tenant farmers"
+    ],
+    "benefits": [
+      "Free soil testing",
+      "Nutrient recommendations",
+      "Improved soil health",
+      "Better crop yields"
+    ],
+    "documents_required": [
+      "Aadhaar card",
+      "Land records",
+      "Contact details"
+    ],
+    "how_to_apply": [
+      "Contact agriculture department",
+      "Submit application",
+      "Soil sample collection",
+      "Receive soil health card"
+    ],
+    "financial_assistance": "Free service",
+    "target_audience": ["all_farmers"],
+    "application_deadline": "Year-round",
+    "contact_info": {
+      "website": "https://soilhealth.dac.gov.in",
+      "helpline": "1800-180-1551"
+    },
+    "url": "/schemes/soil-health-card"
+  }
+] 
