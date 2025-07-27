@@ -9,11 +9,18 @@ import logging
 import os
 import requests
 import base64
+from datetime import datetime
 from dotenv import load_dotenv
 from fastapi import FastAPI, Form, Request, HTTPException
 from fastapi.responses import Response
 from urllib.parse import quote_plus
 from typing import Optional
+
+# Voice processing imports
+from tools.voice_processing_tool import (
+    process_voice_message_from_whatsapp,
+    create_voice_response_for_farmer
+)
 
 # Load environment variables
 load_dotenv()
@@ -227,37 +234,110 @@ async def whatsapp_webhook(
     MediaUrl0: Optional[str] = Form(None),
     MediaContentType0: Optional[str] = Form(None)
 ):
-    """Handle incoming WhatsApp messages from Twilio"""
+    """Handle incoming WhatsApp messages from Twilio (Enhanced with Real-time Logging)"""
     try:
+        # 🎯 REAL-TIME LOGGING: Message Received
+        print("\n" + "="*80)
+        print(f"📱 INCOMING WHATSAPP MESSAGE")
+        print("="*80)
+        print(f"📞 From: {From}")
+        print(f"📄 Message ID: {MessageSid}")
+        print(f"📝 Body: {Body[:100]}{'...' if len(Body) > 100 else ''}")
+        print(f"📎 Media Count: {NumMedia}")
+        if MediaUrl0:
+            print(f"🔗 Media URL: {MediaUrl0}")
+            print(f"📋 Media Type: {MediaContentType0}")
+        print(f"⏰ Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print("="*80)
+        
         logger.info(f"📱 Received WhatsApp message from {From}: {Body[:50]}...")
         logger.info(f"🔍 DEBUG: NumMedia={NumMedia}, MediaUrl0={MediaUrl0}, MediaContentType0={MediaContentType0}")
         
         # Extract phone number
         phone_number = From.replace("whatsapp:", "")
         
-        # Handle media (images)
+        # Initialize variables
         image_data = None
         image_mime_type = None
+        voice_transcript = None
+        farmer_language = "hindi"  # Default language
         
+        # Get farmer context for language preference
+        try:
+            farmer_context_response = await call_adk_api(
+                message="get_farmer_context_summary",
+                phone_number=phone_number
+            )
+            # Extract language from context if available
+            if "primary_language" in farmer_context_response.lower():
+                if "english" in farmer_context_response.lower():
+                    farmer_language = "english"
+                elif "punjabi" in farmer_context_response.lower():
+                    farmer_language = "punjabi"
+                # Add more language detection logic as needed
+        except:
+            logger.info("📝 Using default language (Hindi)")
+        
+        # Handle media (images and voice messages)
         if NumMedia and int(NumMedia) > 0 and MediaUrl0:
             try:
-                logger.info(f"📸 Processing media: {MediaContentType0}")
-                logger.info(f"📸 Media URL: {MediaUrl0}")
+                logger.info(f"📎 Processing media: {MediaContentType0}")
+                logger.info(f"📎 Media URL: {MediaUrl0}")
                 
-                # Download the image with Twilio authentication
-                auth = (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-                media_response = requests.get(MediaUrl0, auth=auth, timeout=10)
-                if media_response.status_code == 200:
-                    # Convert to base64
-                    image_data = base64.b64encode(media_response.content).decode('utf-8')
-                    image_mime_type = MediaContentType0
-                    logger.info(f"✅ Image processed successfully - {len(image_data)} chars, type: {image_mime_type}")
-                else:
-                    logger.warning(f"⚠️ Failed to download media: {media_response.status_code} - {media_response.text}")
+                # Check if it's a voice message
+                if MediaContentType0 and ("audio" in MediaContentType0.lower() or "voice" in MediaContentType0.lower()):
+                    logger.info("🎤 Processing voice message...")
+                    
+                    # Process voice message
+                    auth_tuple = (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+                    voice_transcript = process_voice_message_from_whatsapp(
+                        MediaUrl0, 
+                        auth_tuple, 
+                        farmer_language
+                    )
+                    
+                    if voice_transcript:
+                        logger.info(f"✅ Voice transcribed: {voice_transcript[:50]}...")
+                        # Use transcribed text as the message body
+                        Body = voice_transcript
+                    else:
+                        logger.error("❌ Failed to transcribe voice message")
+                        error_msg = "माफ करें, मैं आपका voice message समझ नहीं पाया। कृपया फिर से भेजें।"
+                        if farmer_language == "english":
+                            error_msg = "Sorry, I couldn't understand your voice message. Please try again."
+                        
+                        twiml_response = f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Message>{error_msg}</Message>
+</Response>"""
+                        return Response(content=twiml_response, media_type="application/xml", status_code=200)
+                
+                # Handle image messages (existing logic)
+                elif MediaContentType0 and "image" in MediaContentType0.lower():
+                    logger.info(f"📸 Processing image: {MediaContentType0}")
+                    
+                    # Download the image with Twilio authentication
+                    auth = (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+                    media_response = requests.get(MediaUrl0, auth=auth, timeout=10)
+                    if media_response.status_code == 200:
+                        # Convert to base64
+                        image_data = base64.b64encode(media_response.content).decode('utf-8')
+                        image_mime_type = MediaContentType0
+                        logger.info(f"✅ Image processed successfully - {len(image_data)} chars, type: {image_mime_type}")
+                    else:
+                        logger.warning(f"⚠️ Failed to download media: {media_response.status_code} - {media_response.text}")
+                
             except Exception as e:
                 logger.error(f"❌ Error processing media: {e}")
         else:
             logger.info(f"📝 No media detected - NumMedia: {NumMedia}")
+        
+        # 🎯 REAL-TIME LOGGING: ADK API Call
+        print(f"🔄 CALLING ADK API...")
+        print(f"   📝 Message: {Body[:50]}{'...' if len(Body) > 50 else ''}")
+        print(f"   📞 Phone: {phone_number}")
+        print(f"   📸 Has Image: {'Yes' if image_data else 'No'}")
+        print(f"   🎤 Has Voice: {'Yes' if voice_transcript else 'No'}")
         
         # Get response from ADK API
         agent_response = await call_adk_api(
@@ -267,14 +347,52 @@ async def whatsapp_webhook(
             image_mime_type=image_mime_type
         )
         
+        # 🎯 REAL-TIME LOGGING: ADK API Response
+        print(f"✅ ADK API RESPONSE RECEIVED")
+        print(f"   📊 Response Length: {len(agent_response)} characters")
+        print(f"   📝 Preview: {agent_response[:100]}{'...' if len(agent_response) > 100 else ''}")
+        
         # Format response for WhatsApp
         formatted_response = format_whatsapp_response(agent_response)
         
-        # Create TwiML response
-        twiml_response = f"""<?xml version="1.0" encoding="UTF-8"?>
+        # If original message was voice, create voice response
+        if voice_transcript:
+            logger.info("🔊 Creating voice response...")
+            voice_response = create_voice_response_for_farmer(formatted_response, farmer_language)
+            
+            if voice_response:
+                # Create TwiML response with voice message
+                # Note: You'll need to upload the voice file to a public URL first
+                # For now, sending text response with voice indication
+                voice_indication = ""
+                if farmer_language == "hindi":
+                    voice_indication = "\n\n🎤 Voice response भी available है।"
+                elif farmer_language == "english":
+                    voice_indication = "\n\n🎤 Voice response is also available."
+                
+                twiml_response = f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Message>{formatted_response}{voice_indication}</Message>
+</Response>"""
+            else:
+                # Fallback to text response
+                twiml_response = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Message>{formatted_response}</Message>
 </Response>"""
+        else:
+            # Regular text response
+            twiml_response = f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Message>{formatted_response}</Message>
+</Response>"""
+        
+        # 🎯 REAL-TIME LOGGING: Sending Response
+        print(f"📤 SENDING WHATSAPP RESPONSE")
+        print(f"   📊 Response Length: {len(formatted_response)} characters")
+        print(f"   🎤 Voice Response: {'Yes' if voice_transcript else 'No'}")
+        print(f"   📝 Preview: {formatted_response[:100]}{'...' if len(formatted_response) > 100 else ''}")
+        print("="*80 + "\n")
         
         logger.info(f"📤 Sending response: {len(formatted_response)} characters")
         

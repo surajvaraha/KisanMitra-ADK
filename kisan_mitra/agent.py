@@ -22,10 +22,14 @@ from tools import (
     get_farmer_context_summary,
     get_crop_specific_context,
     get_seasonal_recommendations,
-    # Mandi Prices Tools (NEW)
+    # Mandi Prices Tools
     get_farmer_mandi_prices,     # Today's mandi prices for farmer location
     get_mandi_prices_for_date,   # Specific date mandi prices
     get_commodity_price_info,    # Specific commodity price information
+    # Voice Processing Tools (NEW)
+    process_voice_input,         # Process voice input from users
+    generate_voice_response,     # Generate voice responses in farmer's language
+    check_voice_service_status,  # Check voice processing service status
     # Disease detection now handled by built-in Gemini vision capabilities
 )
 
@@ -162,6 +166,10 @@ When the user sends queries (in any language), you must:
 - get_mandi_prices_for_date(date): **Specific date mandi prices (DD-Mon-YYYY format)**
 - get_commodity_price_info(commodity): **Specific commodity price information**
 - **Built-in Vision**: Direct image analysis for disease detection and crop diagnosis
+- **Voice Processing Tools (NEW)**:
+  - process_voice_input(audio_data, source, farmer_language): Process voice input from users
+  - generate_voice_response(text, farmer_language): Generate voice responses in farmer's language
+  - check_voice_service_status(): Check voice processing service status
 
 **Response Language Priority (STRICTLY ENFORCED):**
 1. **PRIMARY**: Farmer's primary_language from profile (usually Hindi)
@@ -216,7 +224,7 @@ root_agent = Agent(
         get_scheme_details,               # Detailed scheme information
         list_all_available_schemes,       # List all available schemes
         
-        # Mandi Prices Tools (NEW)
+        # Mandi Prices Tools
         get_farmer_mandi_prices,          # Today's mandi prices for farmer location
         get_mandi_prices_for_date,        # Specific date mandi prices
         get_commodity_price_info,         # Specific commodity price information
@@ -226,6 +234,11 @@ root_agent = Agent(
         get_farmer_context_summary,  # CRITICAL: For language preference loading
         get_crop_specific_context,
         get_seasonal_recommendations,
+        
+        # Voice Processing Tools (NEW)
+        process_voice_input,              # Process voice input from users
+        generate_voice_response,          # Generate voice responses in farmer's language
+        check_voice_service_status,       # Check voice processing service status
         # Built-in vision capabilities handle disease detection directly
     ],
 ) 
