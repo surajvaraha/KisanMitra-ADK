@@ -87,3 +87,18 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/ 
+# Process ID files
+*.pid
+.adk_pid
+.ngrok_pid
+.whatsapp_pid
+
+# Runtime configuration
+.system_urls
+
+# Google Cloud Service Account (sensitive)
+*.json
+
+# Backup and temporary files
+*_backup.py
+*_fixed.py
